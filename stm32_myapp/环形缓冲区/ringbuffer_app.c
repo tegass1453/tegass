@@ -1,7 +1,7 @@
 #include "ringbuffer_app.h"
 /**
  * @brief  对环形缓冲区进行初始化
- * @param  buffer    要初始化的环形缓冲区。
+ * @param  buffer    要初始化的环形缓冲区地址
  * @retval None
  * 示例用法:
  * @code
@@ -19,7 +19,7 @@ void ringbuff_init(ringbuff* buffer)
 
 /**
  * @brief  判断环形缓冲区是否为空
- * @param  buffer    要判断的环形缓冲区。
+ * @param  buffer    要判断的环形缓冲区地址
  * @retval 1-缓冲区为空，0-缓冲区非空
  */
 unsigned char ringbuff_is_empty(ringbuff* buffer)
@@ -28,7 +28,7 @@ unsigned char ringbuff_is_empty(ringbuff* buffer)
 }
 /**
  * @brief  判断环形缓冲区是否为满
- * @param  buffer    要判断的环形缓冲区。
+ * @param  buffer    要判断的环形缓冲区地址
  * @retval 1-缓冲区为满，0-缓冲区非满
  */
 unsigned char ringbuff_is_full(ringbuff* buffer)
@@ -37,7 +37,7 @@ unsigned char ringbuff_is_full(ringbuff* buffer)
 }
 /**
  * @brief  对环形缓冲区写入数据
- * @param  buffer    要写入的环形缓冲区。
+ * @param  buffer    要写入的环形缓冲区地址
  * @param  dat    要写入的数据
  * @param  num    要写入的数据大小
  * @retval 1-缓冲区写入成功，0-缓冲区写入失败
@@ -61,7 +61,7 @@ unsigned char ringbuff_write(ringbuff* buffer,unsigned char* dat,unsigned char n
 }
 /**
  * @brief  读取环形缓冲区数据
- * @param  buffer    要读取的环形缓冲区。
+ * @param  buffer    要读取的环形缓冲区地址
  * @param  dat_reciver    读取的数据赋值处
  * @param  num    要读取的数据大小
  * @retval 1-缓冲区读取成功，0-缓冲区读取失败
