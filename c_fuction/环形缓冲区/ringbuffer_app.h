@@ -1,4 +1,5 @@
-
+#ifndef _RINGBUFFER_APP
+#define _RINGBUFFER_APP
 
 #include "string.h"
 
@@ -20,3 +21,5 @@ unsigned char ringbuff_is_empty(ringbuff* p);
 unsigned char ringbuff_is_full(ringbuff* p);
 unsigned char ringbuff_write(ringbuff* p,unsigned char* dat,unsigned char num);
 unsigned char ringbuff_read(ringbuff* p,unsigned char* dat_reciver,unsigned char num);
+
+#endif
