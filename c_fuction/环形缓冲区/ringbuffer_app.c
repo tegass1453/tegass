@@ -13,7 +13,7 @@ void ringbuff_init(ringbuff* buffer)
 {
     buffer->item_count=0;
     buffer->r=0;
-    buffer->w=1;
+    buffer->w=0;
     memset(buffer->buff,0,sizeof(buffer->buff));
 }
 
