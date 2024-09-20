@@ -1,5 +1,30 @@
-#include "liked_list.h"
-
+#include "linked_list.h"
+/**
+ * @brief  定位链表头
+ * @param  struc_p    开始遍历点的链表地址
+ * @retval None
+ */
+linklist* linklist_find_tail(linklist* struc_p)
+{
+    while (struc_p != NULL)
+    {
+        struc_p = struc_p->last;
+    }
+    return struc_p;
+}
+/**
+ * @brief  定位链表尾部
+ * @param  struc_p    开始遍历点的链表地址
+ * @retval None
+ */
+linklist* linklist_find_tail(linklist* struc_p)
+{
+    while (struc_p != NULL)
+    {
+        struc_p = struc_p->next;
+    }
+    return struc_p;
+}
 /**
  * @brief  对链表进行向下遍历
  * @param  struc_p    开始遍历点的链表地址

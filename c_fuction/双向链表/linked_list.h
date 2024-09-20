@@ -1,5 +1,5 @@
-#ifndef _LIKEDLIST_APP
-#define _LIKEDLIST_APP
+#ifndef _LINKDLIST_APP
+#define _LINKDLIST_APP
 
 #include "stdio.h"
 #include <stdlib.h>
@@ -39,5 +39,7 @@ unsigned char linklist_deltopool(linklist* list);
 void linkpoolhead_free(int num);
 void linklist_insert_head(linklist* insert_list);
 linklist* linklist_new(void);
+linklist* linklist_find_tail(linklist* struc_p);
+linklist* linklist_find_tail(linklist* struc_p);
 
 #endif
