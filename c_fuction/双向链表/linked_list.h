@@ -31,10 +31,13 @@ linklist *head,*tail;
 void  linklist_traverse_down(linklist* struc_p);
 void  linklist_traverse_up(linklist* struc_p);
 void  linklist_init(linklist* struc_p);
+void linklist_insert_if(linklist* insert_list);
 /*上述函数需要用户添加代码*/
 void linklist_insert_end(linklist* insert_list);
-unsigned char linklist_new(void);
+unsigned char linklist_new_end(void);
 unsigned char linklist_deltopool(linklist* list);
 void linkpoolhead_free(int num);
+void linklist_insert_head(linklist* insert_list);
+linklist* linklist_new(void);
 
 #endif

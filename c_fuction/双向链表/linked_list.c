@@ -64,11 +64,79 @@ void linklist_insert_end(linklist* insert_list)
 }
 
 /**
+ * @brief  在头部插入一个链表
+ * @param  insert_list  要插入的链表地址
+ * @retval None
+ */
+void linklist_insert_head(linklist* insert_list)
+{
+    insert_list->last=NULL;
+    insert_list->next=NULL;
+    if (tail == NULL)
+    {
+        tail = insert_list;
+        head = insert_list;
+    }
+    else
+    {
+        head->last=insert_list;
+        insert_list->next=head;
+        head=insert_list;
+    }
+
+}
+
+
+/**
+ * @brief  在符合条件处插入一个链表
+ * @param  insert_list  要插入的链表地址
+ * @retval None
+ */
+void linklist_insert_if(linklist* insert_list)
+{
+    insert_list->last=NULL;
+    insert_list->next=NULL;
+    linklist* temp=head;
+
+    if (tail == NULL)
+    {
+        tail = insert_list;
+        head = insert_list;
+    }
+    else
+    {
+        while(temp!=NULL)
+        {
+             /*以下写入条件判断和退出循环,若符合条件，插入到其前*/
+            /*user struct code start*/
+            
+             /*user struct code end*/      
+            temp=temp->next;
+        }
+        if(temp==head)
+            {
+                temp->last=insert_list;
+                insert_list->next=temp;
+                head=temp;
+            }
+        else 
+        {
+            (temp->last)->next=insert_list;
+            insert_list->last=temp->last;
+            insert_list->next=temp;
+            temp->last=insert_list;
+        }
+            
+    }
+
+}
+
+/**
  * @brief  新创建一个链表，并插入链表末尾
  * @param  struc_p    要初始化的链表地址
  * @retval 1-成功，0-失败
  */
-unsigned char linklist_new(void)
+unsigned char linklist_new_end(void)
 {
    linklist* temp;
    if(linkpoolhead==NULL)
@@ -93,7 +161,36 @@ unsigned char linklist_new(void)
 
    }
 }
+/**
+ * @brief  新创建一个链表，并返回其地址
+ * @param  struc_p    要初始化的链表地址
+ * @retval linklist* 链表地址
+ */
+linklist* linklist_new(void)
+{
+   linklist* temp;
+   if(linkpoolhead==NULL)
+   {
+    temp=(linklist*)malloc(sizeof(linklist));
+    if(temp==NULL)
+        return NULL;
+    
+    temp->next=NULL;
+    temp->last=NULL;
+    return temp;
 
+    return 1;
+   }
+   else 
+   {
+        temp=linkpoolhead;
+        linkpoolhead=linkpoolhead->next;
+        temp->next=NULL;
+        return temp;
+
+
+   }
+}
 
 
 /**
