@@ -51,6 +51,8 @@ binary_tree* binary_tree_create(void)
     new_tree->data = data;
     new_tree->left=binary_tree_create();
     new_tree->right=binary_tree_create();
+    new_tree->ltag = linked;
+    new_tree->rtag = linked;
 
     return new_tree;
 
@@ -79,7 +81,7 @@ void binary_tree_visit(binary_tree* tree,int level)
 *@return:无
 *@param:tree 二叉树指针 level 当前层级
 */
-int  binary_tree_traverse(binary_tree* tree,int level)
+int  binary_tree_preordertraverse(binary_tree* tree,int level)
 {
     if(tree == NULL)
     {
@@ -87,10 +89,84 @@ int  binary_tree_traverse(binary_tree* tree,int level)
     }
 
     binary_tree_visit(tree,level);
-    binary_tree_traverse(tree->left, level+1);
-    binary_tree_traverse(tree->right, level + 1);
+    if(tree->ltag == linked && tree->left!=NULL)
+        binary_tree_preordertraverse(tree->left, level+1);
+    if (tree->rtag == linked&&tree->right!=NULL )
+        binary_tree_preordertraverse(tree->right, level + 1);
 
 
     return OK;
+
+}
+
+
+/*
+*@note: 必须先运行binaryTree_threaded函数进行线索化，本遍历效率最高
+*@name:binary_tree_inordertraverse
+*@function:二叉树中序遍历
+*@return:无
+*@param:tree 二叉树指针
+*/
+int  binary_tree_inordertraverse(binary_tree* tree)
+{
+    if (tree == NULL)
+	{
+		return ERROR;
+	}
+	binary_tree* temp = tree;
+	//先找到最左边结点 然后根据线索化直接向右遍历
+	while (temp != NULL && temp->ltag == linked)
+	{
+		temp = temp->left;
+	}
+	while (temp != NULL)
+	{
+		binary_tree_visit(temp, 0);
+		temp = temp->right;
+	}
+
+    return OK;
+
+}
+
+
+/*
+*@name:binaryTree_threaded
+*@function:二叉树线索化
+*@return:无
+*@param:tree 二叉树指针
+*/
+void binaryTree_threaded(binary_tree* tree)
+{
+    static binary_tree* pre = NULL;
+
+   if(tree == NULL)
+   {
+        return ;
+   }
+
+   if( tree->left != NULL)
+        binaryTree_threaded(tree->left);
+
+   if( pre == NULL)
+   {
+        pre=tree;
+   }
+   else if(pre->right == NULL)
+   {
+        pre->right = tree;
+        pre->rtag = threaded;
+   }
+
+   if(tree->left == NULL)
+   {
+        tree->left = pre;
+        tree->ltag = threaded;
+   }
+
+   pre = tree;
+
+   if(tree->left != NULL)
+         binaryTree_threaded(tree->right);
 
 }
